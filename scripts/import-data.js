@@ -1,5 +1,5 @@
 var dataArray = [];
-const url = "http://mappy.dali.dartmouth.edu/members.json";
+const url = "https://raw.githubusercontent.com/dali-lab/mappy/gh-pages/members.json";
 
 fetchData(url);
 
