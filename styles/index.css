@@ -1,0 +1,24 @@
+#fill-content {
+    margin-top: 30px;
+}
+
+/* reduce to three columns */
+@media screen and (max-width: 1220px) {
+    .grid-container {
+        grid-template-columns: auto auto auto;
+    }
+}
+
+/* reduce to two columns */
+@media screen and (max-width: 940px) {
+    .grid-container {
+        grid-template-columns: auto auto;
+    }
+}
+
+/* reduce to one columns */
+@media screen and (max-width: 620px) {
+    .grid-container {
+        grid-template-columns: auto;
+    }
+}
