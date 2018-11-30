@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="styles/index.css">
         <link rel="stylesheet" href="styles/person-preview.css">
         <link rel="stylesheet" href="styles/navbar.css">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,400,500,700,900" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,400,500,700,900">
 
         <!-- load jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -22,7 +22,7 @@
 
         <!-- use JSX -->
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-        
+
 	</head>
 
 	<body>
@@ -38,38 +38,39 @@
             </span>
 
             <span class="selection-area" id="sort-terms">
-                <h3 class="selection-criteria">Terms In Lab</h3>
+                <h3 class="selection-criteria" onclick="sortByTermsInLab()">Terms In Lab</h3>
             </span>
 
             <span class="selection-area" id="sort-projects">
-                <h3 class="selection-criteria">By Project</h3>
+                <h3 class="selection-criteria" onclick="sortByProject()">By Project</h3>
             </span>
         </div>
 
         <div id="filter">
             <span class="selection-area" id="filter-name">
-                <h3 class="selection-criteria">Name</h3>
-                <p class="selection-type" id="name-contains">Contains</p>
-                <input id="name-contains-input" type="text" name="fname" onclick="this.select()">
-				<button id="name-contains-submit" class="submit" onclick="">Submit</button>
+                <h3 class="selection-criteria" id="name-contains">Name Contains</h3>
+                <input class="input-text" id="name-contains-input" type="text" name="fname" onclick="this.select()" value="Enter Name Here">
+				<button id="name-contains-submit" class="submit" onclick="filterNameContains()">Submit</button>
             </span>
 
             <span class="selection-area" id="filter-terms">
                 <h3 class="selection-criteria">Terms In Lab</h3>
-                <p>check boxes here</p>
+                <div id="terms-in-lab-checkboxes"></div>
+                <input class="submit checkbox-submit" type="submit" value="Submit" onclick="filterTermsInLab()"></input>
             </span>
 
             <span class="selection-area" id="filter-projects">
                 <h3 class="selection-criteria">Projects</h3>
-                <p>check boxes here</p>
+                <div id="projects-checkboxes"></div>
+                <input class="submit checkbox-submit" type="submit" value="Submit" onclick="filterProjects()"></input>
             </span>
         </div>
 
         <div class="grid-container" id="fill-content"></div>
     </body>
-
     <script src='scripts/person-preview.js' type="text/babel"></script>
     <script src='scripts/all-people.js' type="text/babel"></script>
-    <script src='scripts/import-data.js' type="text/babel"></script>
     <script src='scripts/navbar.js' type="text/babel"></script>
+    <script src='scripts/checkboxes.js' type="text/babel"></script>
+    <script src='scripts/import-data.js' type="text/babel"></script>
 </html>

@@ -9,9 +9,13 @@ body {
     display: grid;
     grid-template-columns: auto auto auto auto;
     padding: 10px;
+    grid-gap: 10px;
 }
 
 .grid-item {
+    display: flex;
     padding: 20px;
     text-align: center;
+    flex-direction: column;    /* vertical alignment of flex items */
+    align-items: center;
 }

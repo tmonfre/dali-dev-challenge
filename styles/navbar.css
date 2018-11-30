@@ -50,14 +50,18 @@
 }
 
 .selection-criteria {
-
+    color: #5596e6;
 }
 
 .selection-type {
     cursor: pointer;
 }
 
-/* sort area styling */
+#sort-terms h3, #sort-projects h3 {
+    cursor: pointer;
+}
+
+/* sort/filter area styling */
 
 #sort {
     height: auto;
@@ -66,6 +70,51 @@
     background-color: #30598e;
     padding: 15px 30px 40px 30px;
     border-radius: 5px;
+}
+
+#sort p, #sort h3, #sort li, #filter p, #filter h3, #filter li {
+    color: white;
+}
+
+.input-text {
+    border: none;
+    border-radius: 4px;
+    background-color: #E8E8E8;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 7px;
+}
+
+.input-text:hover {
+    background-color: #5094ED;
+    font-weight: bold;
+}
+
+.submit {
+    width: 60px;
+    padding: 7px;
+    border: none;
+    border-radius: 4px;
+    background-color: #E8E8E8;
+}
+
+.submit:hover {
+    background-color: #5094ED;
+    font-weight: bold;
+}
+
+#reset-filters-sort {
+    width: 100px;
+    margin-top: 15px;
+}
+
+.checkbox-submit {
+    margin-top: 15px;
+}
+
+.checkbox-span {
+    color: white;
 }
 
 /* reduce to one columns */
