@@ -78,6 +78,7 @@
     -moz-appearance: none;
     appearance: none;
     padding: 7px;
+    margin-right: 10px;
 }
 
 .input-text:hover {

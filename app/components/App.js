@@ -12,6 +12,7 @@ class App extends React.Component {
         this.termsCheckboxesRef = React.createRef();
         this.projectsCheckboxesRef = React.createRef();
         this.allPeopleRef = React.createRef();
+        this.navBarRef = React.createRef();
 
         // bind this to below functions
         this.resetButton = this.resetButton.bind(this);
@@ -29,7 +30,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <NavBar appRef={this} />
+                <NavBar appRef={this} ref={this.navBarRef} />
                 <div id="sort">
                     <span className="selection-area" id="sort-name">
                         <h3 className="selection-criteria">Name</h3>
@@ -51,44 +52,78 @@ class App extends React.Component {
                 <div id="filter">
                     <span className="selection-area" id="filter-name">
                         <h3 className="selection-criteria" id="name-contains">Name Contains</h3>
-                        <input className="input-text" id="name-contains-input" type="text" name="fname" onClick="this.select()" value="Enter Name Here"></input>
-                        <button id="name-contains-submit" class="submit" onClick={this.filterNameContains}>Submit</button>
+                        <input className="input-text" id="name-contains-input" type="text" name="fname" onClick={this.selectFilterText} value="Enter Name Here"></input>
+                        <button id="name-contains-submit" className="submit" onClick={this.filterNameContains}>Submit</button>
                     </span>
 
                     <span className="selection-area" id="filter-terms">
                         <h3 className="selection-criteria">Terms In Lab</h3>
-                        <TermsInLabCheckboxes totalData={this.totalData} ref={this.termsCheckboxesRef} />
-                        <input className="submit checkbox-submit" type="submit" value="Submit" onClick={this.filterTermsInLab}></input>
+                        <div id="terms-in-lab-checkboxes">
+                            <TermsInLabCheckboxes totalData={this.props.dataArray} ref={this.termsCheckboxesRef} />
+                        </div>
+                        <input className="submit checkbox-submit" type="submit" onClick={this.filterTermsInLab}></input>
                     </span>
 
                     <span className="selection-area" id="filter-projects">
                         <h3 className="selection-criteria">Projects</h3>
-                        <ProjectsCheckboxes totalData={this.totalData} ref={this.projectsCheckboxesRef} />
-                        <input className="submit checkbox-submit" type="submit" value="Submit" onClick={this.filterProjects}></input>
+                        <div id="projects-checkboxes">
+                            <ProjectsCheckboxes totalData={this.props.dataArray} ref={this.projectsCheckboxesRef} />
+                        </div>
+                        <input className="submit checkbox-submit" type="submit" onClick={this.filterProjects}></input>
                     </span>
                 </div>
 
-                <AllPeople dataArray={this.props.dataArray} ref={this.allPeopleRef} />
+                <div className="grid-container">
+                    <AllPeople dataArray={this.props.dataArray} ref={this.allPeopleRef} />
+                </div>
             </div>
         );
     }
 
+    componentDidMount() {
+        // select checkboxes
+        this.selectAllTermCheckboxes();
+        this.selectAllProjectCheckboxes();
+    }
+
+    resetButton() {
+        this.selectAllTermCheckboxes();
+        this.selectAllProjectCheckboxes();
+        document.getElementById('name-contains-input').value = "Enter Name Here";
+
+        this.allPeopleRef.current.setState({
+            reactDataArray: this.props.dataArray,
+            order: "default"
+        });
+
+        $("#sort").slideUp();
+        $("#filter").slideUp();
+    }
+
     // select all term filter checkboxes
     selectAllTermCheckboxes() {
-        for (var nodeObj in this.termsCheckboxesRef.childNodes) {
-            if (this.termsCheckboxesRef.childNodes[nodeObj].tagName == "SPAN") {
-                this.termsCheckboxesRef.childNodes[nodeObj].getElementsByTagName('input')[0].checked = true;
+        var termsSpan = document.getElementById('terms-in-lab-checkboxes');
+
+        for (var nodeObj in termsSpan.childNodes) {
+            if (termsSpan.childNodes[nodeObj].tagName == "SPAN") {
+                termsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked = true;
             }
         }
     }
 
     // select all project filter checkboxes
     selectAllProjectCheckboxes() {
-        for (var nodeObj in this.projectsCheckboxesRef.childNodes) {
-            if (this.projectsCheckboxesRef.childNodes[nodeObj].tagName == "SPAN") {
-                this.projectsCheckboxesRef.childNodes[nodeObj].getElementsByTagName('input')[0].checked = true;
+        var projectsSpan = document.getElementById('projects-checkboxes');
+
+        for (var nodeObj in projectsSpan.childNodes) {
+            if (projectsSpan.childNodes[nodeObj].tagName == "SPAN") {
+                projectsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked = true;
             }
         }
+    }
+
+    selectFilterText() {
+        document.getElementById('name-contains-input').select();
     }
 
     // SORT FUNCTION: order the people shown on screen alphabetically by name and rerender
@@ -99,7 +134,7 @@ class App extends React.Component {
             if(a.name > b.name) { return 1; }
             return 0;
         });
-        this.allPeopleRef.setState({
+        this.allPeopleRef.current.setState({
             reactDataArray: newArray,
             order: "alphabetical"
         });
@@ -113,7 +148,7 @@ class App extends React.Component {
         newArray.sort(function() { return 0.5 - Math.random() });
 
         var str = "random" + Math.random(); // construct a random name so the state changes -- to lookup the state and see what order we are on, call startsWith("random")
-        this.allPeopleRef.setState({
+        this.allPeopleRef.current.setState({
             reactDataArray: newArray,
             order: "str"
         });
@@ -129,7 +164,7 @@ class App extends React.Component {
             if(a.terms_on > b.terms_on) { return 1; }
             return 0;
         });
-        this.allPeopleRef.setState({
+        this.allPeopleRef.current.setState({
             reactDataArray: newArray,
             order: "terms-in-lab"
         });
@@ -145,7 +180,7 @@ class App extends React.Component {
             if(a.project[0] > b.project[0]) { return 1; }
             return 0;
         });
-        this.allPeopleRef.setState({
+        this.allPeopleRef.current.setState({
             reactDataArray: newArray,
             order: "project"
         });
@@ -166,7 +201,7 @@ class App extends React.Component {
                 }
             }
 
-            this.allPeopleRef.setState({
+            this.allPeopleRef.current.setState({
                 reactDataArray: newArray
             });
             $("#sort").slideUp();
@@ -179,9 +214,11 @@ class App extends React.Component {
         var desiredTerms = [];
 
         // find all terms the user wants to see
-        for (var nodeObj in this.termsCheckboxesRef.childNodes) {
-            if (this.termsCheckboxesRef.childNodes[nodeObj].tagName == "SPAN" && this.termsCheckboxesRef.childNodes[nodeObj].getElementsByTagName('input')[0].checked) {
-                desiredTerms.push(this.termsCheckboxesRef.childNodes[nodeObj].getElementsByTagName('input')[0].name);
+        var termsSpan = document.getElementById('terms-in-lab-checkboxes');
+
+        for (var nodeObj in termsSpan.childNodes) {
+            if (termsSpan.childNodes[nodeObj].tagName == "SPAN" && termsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked) {
+                desiredTerms.push(termsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].name);
             }
         }
 
@@ -190,12 +227,12 @@ class App extends React.Component {
         // update the objects we grab based on user selection
         for (var dataObj in this.props.dataArray) {
             for (var term in this.props.dataArray[dataObj].terms_on) {
-                if (desiredTerms.includes(totalData[dataObj].terms_on[term]) && !newDataArray.includes(this.props.dataArray[dataObj])) {
+                if (desiredTerms.includes(this.props.dataArray[dataObj].terms_on[term]) && !newArray.includes(this.props.dataArray[dataObj])) {
                     newArray.push(this.props.dataArray[dataObj]);
                 }
             }
         }
-        this.allPeopleRef.setState({
+        this.allPeopleRef.current.setState({
             reactDataArray: newArray
         });
         $("#sort").slideUp();
@@ -207,9 +244,11 @@ class App extends React.Component {
         var desiredProjects = [];
 
         // find all projects the user wants to see
-        for (var nodeObj in this.projectsCheckboxesRef.childNodes) {
-            if (this.projectsCheckboxesRef.childNodes[nodeObj].tagName == "SPAN" && this.projectsCheckboxesRef.childNodes[nodeObj].getElementsByTagName('input')[0].checked) {
-                desiredProjects.push(this.projectsCheckboxesRef.childNodes[nodeObj].getElementsByTagName('input')[0].name);
+        var projectsSpan = document.getElementById('projects-checkboxes');
+
+        for (var nodeObj in projectsSpan.childNodes) {
+            if (projectsSpan.childNodes[nodeObj].tagName == "SPAN" && projectsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked) {
+                desiredProjects.push(projectsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].name);
             }
         }
 
@@ -218,13 +257,13 @@ class App extends React.Component {
         // update the objects we grab based on user selection
         for (var dataObj in this.props.dataArray) {
             for (var proj in this.props.dataArray[dataObj].project) {
-                if (desiredProjects.includes(this.props.dataArray[dataObj].project[proj]) && !newDataArray.includes(this.props.dataArray[dataObj])) {
-                    newDataArray.push(this.props.dataArray[dataObj])
+                if (desiredProjects.includes(this.props.dataArray[dataObj].project[proj]) && !newArray.includes(this.props.dataArray[dataObj])) {
+                    newArray.push(this.props.dataArray[dataObj])
                 }
             }
         }
 
-        this.allPeopleRef.setState({
+        this.allPeopleRef.current.setState({
             reactDataArray: newArray
         });
         $("#sort").slideUp();
@@ -233,10 +272,3 @@ class App extends React.Component {
 }
 
 module.exports = App;
-
-// // trigger function for when user presses enter in name contains text field - basically just click the submit button for them
-// document.getElementById('name-contains-input').onkeypress=function(e) {
-//     if(e.keyCode==13){
-//         document.getElementById('name-contains-submit').click();
-//     }
-// }

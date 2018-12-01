@@ -2,6 +2,10 @@ var React = require('react');
 
 // ReactJS class to construct the navbar -- using react so one source of truth on nav bar even when in different files
 class NavBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.resetData = this.resetData.bind(this);
+    }
     render() {
         return (
 			<div id="navbar-container">
@@ -25,13 +29,8 @@ class NavBar extends React.Component {
         $("#filter").slideToggle();
     }
 
+    // reset filter area user inputs and data
     resetData() {
-        // reset filter area user inputs
-        document.getElementById('name-contains-input').value = "Enter Name Here";
-        this.props.appRef.selectAllTermCheckboxes;
-        this.props.appRef.selectAllProjectCheckboxes;
-
-        $("#sort").slideUp();
-        $("#filter").slideUp();
+        this.props.appRef.resetButton();
     }
 }
