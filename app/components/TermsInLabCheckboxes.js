@@ -37,3 +37,5 @@ class TermsInLabCheckboxes extends React.Component {
         return allObjects;
     }
 }
+
+module.exports = TermsInLabCheckboxes;

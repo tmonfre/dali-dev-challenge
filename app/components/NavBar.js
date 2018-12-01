@@ -34,3 +34,5 @@ class NavBar extends React.Component {
         this.props.appRef.resetButton();
     }
 }
+
+module.exports = NavBar;

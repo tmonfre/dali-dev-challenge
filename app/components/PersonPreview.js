@@ -49,3 +49,5 @@ class PersonPreview extends React.Component {
         jQuery(this.dropDownArea.current).slideToggle();
     }
 }
+
+module.exports = PersonPreview;

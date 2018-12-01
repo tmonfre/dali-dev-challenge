@@ -1,4 +1,5 @@
 var React = require('react');
+var PersonPreview = require('../components/PersonPreview');
 
 // shows individual divs for each person received in the data
 class AllPeople extends React.Component {
@@ -23,3 +24,5 @@ class AllPeople extends React.Component {
         return allObjects;
     }
 }
+
+module.exports = AllPeople;

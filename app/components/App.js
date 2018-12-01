@@ -8,16 +8,21 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            filterNameSearchString: "Enter Name Here"
+        }
+
         // create references to divs on screen
         this.termsCheckboxesRef = React.createRef();
         this.projectsCheckboxesRef = React.createRef();
         this.allPeopleRef = React.createRef();
-        this.navBarRef = React.createRef();
+        this.filterTextAreRef = React.createRef();
 
         // bind this to below functions
         this.resetButton = this.resetButton.bind(this);
         this.selectAllTermCheckboxes = this.selectAllTermCheckboxes.bind(this);
         this.selectAllProjectCheckboxes = this.selectAllProjectCheckboxes.bind(this);
+        this.handleFilterNameSearchChange = this.handleFilterNameSearchChange.bind(this);
         this.alphabetizeByName = this.alphabetizeByName.bind(this);
         this.randomizeByName = this.randomizeByName.bind(this);
         this.sortByTermsInLab = this.sortByTermsInLab.bind(this);
@@ -52,7 +57,7 @@ class App extends React.Component {
                 <div id="filter">
                     <span className="selection-area" id="filter-name">
                         <h3 className="selection-criteria" id="name-contains">Name Contains</h3>
-                        <input className="input-text" id="name-contains-input" type="text" name="fname" onClick={this.selectFilterText} value="Enter Name Here"></input>
+                        <input className="input-text" id="name-contains-input" type="text" name="fname" onClick={this.selectFilterText} onChange={this.handleFilterNameSearchChange} onSubmit={this.handleFilterNameKeyPress()} value={this.state.filterNameSearchString} ref={this.filterTextAreRef} ></input>
                         <button id="name-contains-submit" className="submit" onClick={this.filterNameContains}>Submit</button>
                     </span>
 
@@ -124,6 +129,20 @@ class App extends React.Component {
 
     selectFilterText() {
         document.getElementById('name-contains-input').select();
+    }
+
+    handleFilterNameSearchChange() {
+        this.setState(
+            {
+                filterNameSearchString: this.filterTextAreRef.current.value
+            }
+        );
+    }
+
+    handleFilterNameKeyPress() {
+        if (event.key == 'Enter') {
+            document.getElementById('name-contains-submit').click();
+        }
     }
 
     // SORT FUNCTION: order the people shown on screen alphabetically by name and rerender

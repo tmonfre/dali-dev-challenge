@@ -37,3 +37,5 @@ class ProjectsCheckboxes extends React.Component {
         return allObjects;
     }
 }
+
+module.exports = ProjectsCheckboxes;

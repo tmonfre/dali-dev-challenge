@@ -41,10 +41,3 @@ function fetchData(url) {
     xmlHttp.responseType = 'json';
     xmlHttp.send(null);
 }
-
-// trigger function for when user presses enter in name contains text field - basically just click the submit button for them
-document.getElementById('name-contains-input').onkeypress=function(e) {
-    if(e.keyCode==13){
-        document.getElementById('name-contains-submit').click();
-    }
-}
