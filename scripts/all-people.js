@@ -7,15 +7,13 @@ class AllPeople extends React.Component {
             reactDataArray: this.props.dataArray,
             order: 'default'
         };
-
-        console.log(this.state.reactDataArray);
     }
     render() {
         // construct an array of PersonPreview components
         var allObjects = [];
 
         for (var i in this.state.reactDataArray) {
-            allObjects.push(this.state.reactDataArray.reactPersonPreviewObj);
+            allObjects.push(this.state.reactDataArray[i].reactPersonPreviewObj);
         }
 
         return allObjects;

@@ -21,7 +21,7 @@ function fetchData(url) {
             totalData = xmlHttp.response;
 
             for (var person in totalData) {
-                totalData[person].reactPersonPreviewObj = <PersonPreview personObj={totalData[person]} key={person} />
+                totalData[person].reactPersonPreviewObj = <PersonPreview personObj={totalData[person]} key={person} />;
             }
 
             dataArray = totalData;
