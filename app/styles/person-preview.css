@@ -1,0 +1,49 @@
+.person {
+    padding: 25px 15px;
+    color: #101419;
+    border-radius: 10px;
+    transition-duration: 1s;
+}
+
+.person:hover {
+    background-color: #30598e;
+    transition-duration: 0.5s;
+}
+
+.mouse-hover p, .mouse-hover h3, .mouse-hover a {
+    color: white;
+}
+
+.website {
+    font-style: italic;
+}
+
+.person img {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    border: 2px solid #5596e6;
+}
+
+.name {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.name a {
+    text-decoration: none;
+    color: #3d70b2;
+}
+
+.name a:hover {
+    text-decoration: underline;
+}
+
+.drop-down-area {
+    display: none;
+}
+
+.message {
+    font-style: italic;
+}
