@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server",
-    "deploy": "surge -p ../dali-dev-challenge -d dali-dev-challenge.surge.sh"
+    "deploy": "surge -p ../dali-dev-challenge -d dali-dev-challenge.surge.sh/"
   },
   "repository": {
     "type": "git",
