@@ -5,7 +5,7 @@ Last Updated: 12.1.2018
 - Developer Information
 - Author
 ## Project Overview
-This website visualizes data on DALI Lab Members and allows users to search, filter, and sort. The front-end is built using ReactJS. JSX is compiled using webpack and babel. You can view the site live at 'dali-dev-challenge.surge.sh'.
+This website visualizes data on DALI Lab Members and allows users to search, filter, and sort. The front-end is built using ReactJS. JSX is compiled using webpack and babel. You can view the site live at `dali-dev-challenge.surge.sh`.
 ## Developer Information
 ### Installation:
 #### Tools:
@@ -17,10 +17,10 @@ This website visualizes data on DALI Lab Members and allows users to search, fil
 - Make sure you are on the branch master
 - Navigate to `dali-dev-challenge/`
 - To build `npm run build`
-- To view locally 'npm run start'
+- To view locally `npm run start`
 ### Repo Structure
 - Code for frontend development is contained in the `app/` directory
-- Production distributed code is contained in the 'src/' directory
+- Production distributed code is contained in the `src/` directory
 #### Contents
 - The root `index.html` page redirects to the `src/` directory
 - Code constructing website pages is contained in `app/`
@@ -30,12 +30,12 @@ This website visualizes data on DALI Lab Members and allows users to search, fil
 	- `styles/` contains CSS style files
 #### Deploying Changes
 - The frontend is deployed using surge, so first make sure you install surge if you don’t already have it
-	`npm install --global surge`
+  - `npm install --global surge`
 - Next navigate to the root directory
-	`npm run build`
-	`surge` then press enter when given a project prompt with the local directory you created after cloning the repository
-- Visit http://dali-dev-challenge.surge.sh/ to see project
+  - `npm run build`
+  - `surge` then press enter when given a project prompt with the local directory you created after cloning the repository
+- Visit http://dali-dev-challenge.surge.sh/ to see the project
 ## Author
-Thomas Monfre, Dartmouth College.
-tmonfre.github.io
-Find me on LinkedIn at https://www.linkedin.com/in/thomas-monfre-0b1a50164/
+- Thomas Monfre, Dartmouth College.
+- tmonfre.github.io
+- Find me on LinkedIn at https://www.linkedin.com/in/thomas-monfre-0b1a50164/
