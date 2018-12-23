@@ -10,8 +10,11 @@ This website visualizes data on DALI Lab Members and allows users to search, fil
 ### Installation:
 #### Tools:
 - You will need node in order to build, run and develop this project
-- Tool installation instructions (for mac, using homebrew)
-	- `brew install node`
+- I recommend installing node via a version manager such as nvm
+  - `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash`
+- See the following [repository](https://github.com/creationix/nvm) for more information.
+- Make sure to use node version 10.12
+  - `nvm use 10.12`
 #### Project:
 - Clone repository `git clone https://github.com/tmonfre/dali-dev-challenge/`
 - Make sure you are on the branch master
