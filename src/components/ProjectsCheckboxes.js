@@ -1,8 +1,8 @@
-var React = require('react');
-var Checkbox = require('../components/Checkbox');
+import React, { Component } from 'react';
+import Checkbox from './Checkbox.js';
 
 // checkboxes to allow user to filter based on the project each person worked in the lab
-class ProjectsCheckboxes extends React.Component {
+class ProjectsCheckboxes extends Component {
     constructor(props) {
         super(props);
         this.projectsArray = []; // all possible terms that we found in the data
@@ -10,7 +10,7 @@ class ProjectsCheckboxes extends React.Component {
         // loop through all objects we receive and ensure we put all possible projects in projectsArray
         for (var dataObj in this.props.totalData) {
             for (var projInObj in this.props.totalData[dataObj].project) {
-                if (!this.projectsArray.includes(this.props.totalData[dataObj].project[projInObj]) && this.props.totalData[dataObj].project[projInObj] != "") {
+                if (!this.projectsArray.includes(this.props.totalData[dataObj].project[projInObj]) && this.props.totalData[dataObj].project[projInObj] !== "") {
                     this.projectsArray.push(this.props.totalData[dataObj].project[projInObj]);
                 }
             }
@@ -38,4 +38,4 @@ class ProjectsCheckboxes extends React.Component {
     }
 }
 
-module.exports = ProjectsCheckboxes;
+export default ProjectsCheckboxes;

@@ -1,10 +1,12 @@
-var React = require('react');
-var NavBar = require('../components/NavBar');
-var AllPeople = require('../components/AllPeople');
-var TermsInLabCheckboxes = require('../components/TermsInLabCheckboxes');
-var ProjectsCheckboxes = require('../components/ProjectsCheckboxes');
+import React, { Component } from 'react';
+import NavBar from './NavBar.js';
+import AllPeople from './AllPeople.js';
+import TermsInLabCheckboxes from './TermsInLabCheckboxes.js';
+import ProjectsCheckboxes from './ProjectsCheckboxes.js';
+var $ = require("jquery");
 
-class App extends React.Component {
+
+class App extends Component {
     constructor(props) {
         super(props);
 
@@ -57,7 +59,7 @@ class App extends React.Component {
                 <div id="filter">
                     <span className="selection-area" id="filter-name">
                         <h3 className="selection-criteria" id="name-contains">Name Contains</h3>
-                        <input className="input-text" id="name-contains-input" type="text" name="fname" onClick={this.selectFilterText} onChange={this.handleFilterNameSearchChange} onSubmit={this.handleFilterNameKeyPress()} value={this.state.filterNameSearchString} ref={this.filterTextAreRef} ></input>
+                        <input className="input-text" id="name-contains-input" type="text" name="fname" onClick={this.selectFilterText} onChange={this.handleFilterNameSearchChange} onKeyPress={this.handleFilterNameKeyPress} onSubmit={this.handleFilterNameKeyPress} value={this.state.filterNameSearchString} ref={this.filterTextAreRef} ></input>
                         <button id="name-contains-submit" className="submit" onClick={this.filterNameContains}>Submit</button>
                     </span>
 
@@ -110,7 +112,7 @@ class App extends React.Component {
         var termsSpan = document.getElementById('terms-in-lab-checkboxes');
 
         for (var nodeObj in termsSpan.childNodes) {
-            if (termsSpan.childNodes[nodeObj].tagName == "SPAN") {
+            if (termsSpan.childNodes[nodeObj].tagName === "SPAN") {
                 termsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked = true;
             }
         }
@@ -121,7 +123,7 @@ class App extends React.Component {
         var projectsSpan = document.getElementById('projects-checkboxes');
 
         for (var nodeObj in projectsSpan.childNodes) {
-            if (projectsSpan.childNodes[nodeObj].tagName == "SPAN") {
+            if (projectsSpan.childNodes[nodeObj].tagName === "SPAN") {
                 projectsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked = true;
             }
         }
@@ -139,8 +141,8 @@ class App extends React.Component {
         );
     }
 
-    handleFilterNameKeyPress() {
-        if (event.key == 'Enter') {
+    handleFilterNameKeyPress(event) {
+        if (event.key === 'Enter') {
             document.getElementById('name-contains-submit').click();
         }
     }
@@ -169,7 +171,7 @@ class App extends React.Component {
         var str = "random" + Math.random(); // construct a random name so the state changes -- to lookup the state and see what order we are on, call startsWith("random")
         this.allPeopleRef.current.setState({
             reactDataArray: newArray,
-            order: "str"
+            order: str
         });
         $("#sort").slideUp();
         $("#filter").slideUp();
@@ -211,11 +213,11 @@ class App extends React.Component {
     filterNameContains() {
         var nameToCheck = document.getElementById('name-contains-input').value;
 
-        if (nameToCheck != "" && nameToCheck != "Enter Name Here") {
+        if (nameToCheck !== "" && nameToCheck !== "Enter Name Here") {
             var newArray = [];
 
             for (var i in this.props.dataArray) {
-                if (this.props.dataArray[i].name == nameToCheck) {
+                if (this.props.dataArray[i].name.includes(nameToCheck)) {
                     newArray.push(this.props.dataArray[i]);
                 }
             }
@@ -236,7 +238,7 @@ class App extends React.Component {
         var termsSpan = document.getElementById('terms-in-lab-checkboxes');
 
         for (var nodeObj in termsSpan.childNodes) {
-            if (termsSpan.childNodes[nodeObj].tagName == "SPAN" && termsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked) {
+            if (termsSpan.childNodes[nodeObj].tagName === "SPAN" && termsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked) {
                 desiredTerms.push(termsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].name);
             }
         }
@@ -266,7 +268,7 @@ class App extends React.Component {
         var projectsSpan = document.getElementById('projects-checkboxes');
 
         for (var nodeObj in projectsSpan.childNodes) {
-            if (projectsSpan.childNodes[nodeObj].tagName == "SPAN" && projectsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked) {
+            if (projectsSpan.childNodes[nodeObj].tagName === "SPAN" && projectsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].checked) {
                 desiredProjects.push(projectsSpan.childNodes[nodeObj].getElementsByTagName('input')[0].name);
             }
         }
@@ -290,4 +292,4 @@ class App extends React.Component {
     }
 }
 
-module.exports = App;
+export default App;

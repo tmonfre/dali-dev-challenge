@@ -1,8 +1,8 @@
-var React = require('react');
-var Checkbox = require('../components/Checkbox');
+import React, { Component } from 'react';
+import Checkbox from './Checkbox.js';
 
 // checkboxes to allow user to filter based on the term each person worked in the lab
-class TermsInLabCheckboxes extends React.Component {
+class TermsInLabCheckboxes extends Component {
     constructor(props) {
         super(props);
         this.termsArray = []; // all possible terms that we found in the data
@@ -38,4 +38,4 @@ class TermsInLabCheckboxes extends React.Component {
     }
 }
 
-module.exports = TermsInLabCheckboxes;
+export default TermsInLabCheckboxes;

@@ -1,8 +1,8 @@
-var React = require('react');
-var PersonPreview = require('../components/PersonPreview');
+import React, { Component } from 'react';
+import PersonPreview from './PersonPreview.js';
 
 // shows individual divs for each person received in the data
-class AllPeople extends React.Component {
+class AllPeople extends Component {
     constructor(props) {
         super(props);
 
@@ -25,4 +25,4 @@ class AllPeople extends React.Component {
     }
 }
 
-module.exports = AllPeople;
+export default AllPeople;
