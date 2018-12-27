@@ -2,6 +2,7 @@
 (function (factory) {
 	// UMD start
 	// https://github.com/umdjs/umd/blob/master/jqueryPluginCommonjs.js
+	/*global define*/
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
 		define(['jquery'], factory);
@@ -25,6 +26,7 @@
 		};
 	} else {
 		// Browser globals
+		/*global jQuery*/
 		factory(jQuery);
 	}
 }(function ($) {

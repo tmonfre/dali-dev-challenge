@@ -1,7 +1,9 @@
-var React = require('react');
+import React, { Component } from 'react';
+import './PersonPreview.css';
+var jQuery = require("jquery");
 
 // shows a preview area for an individual person
-class PersonPreview extends React.Component {
+class PersonPreview extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,13 +23,13 @@ class PersonPreview extends React.Component {
     render() {
         return (
             <div className="person grid-item" ref={this.topDiv} onMouseEnter={this.mouseEnterStyling} onMouseLeave={this.mouseLeaveStyling} onClick={this.showDropDownArea}>
-                <img src={"http://mappy.dali.dartmouth.edu/" + this.props.personObj.iconUrl}/>
+                <img src={"http://mappy.dali.dartmouth.edu/" + this.props.personObj.iconUrl} alt={this.props.personObj.name + "image"}/>
                 <h3 className="name">{this.props.personObj.name}</h3>
                 <p className="message">{this.props.personObj.message}</p>
                 <div className="drop-down-area" ref={this.dropDownArea}>
                     <p className="curr-project">{this.props.personObj.project}</p>
                     <p className="terms-on">{this.props.personObj.terms_on}</p>
-                    <p className="website"><a href={this.props.personObj.url} target="_blank">Website</a></p>
+                    <p className="website"><a href={this.props.personObj.url} target="_blank" rel="noopener noreferrer">Website</a></p>
                     <p className="lat-long">{this.props.personObj.lat_long[0] + ", " + this.props.personObj.lat_long[1]}</p>
                 </div>
             </div>
@@ -50,4 +52,4 @@ class PersonPreview extends React.Component {
     }
 }
 
-module.exports = PersonPreview;
+export default PersonPreview;

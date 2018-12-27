@@ -27,7 +27,7 @@ This website visualizes data on DALI Lab Members and allows users to search, fil
 #### Contents
 - The root `index.html` page redirects to the `src/` directory
 - Code constructing website pages is contained in `app/`
-  - `index.html` is homepage 
+  - `index.html` is homepage
   - `index.js` uses Ajax to create an HTTP GET request then builds the app starting with React component `<App />`
 	- `components/` contains React class components
 	- `styles/` contains CSS style files

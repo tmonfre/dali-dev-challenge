@@ -1,7 +1,7 @@
-var React = require('react');
+import React, { Component } from 'react';
 
 // ReactJS class for an individual checkbox
-class Checkbox extends React.Component {
+class Checkbox extends Component {
     render() {
         return (
             <span className="checkbox-span">
@@ -12,4 +12,4 @@ class Checkbox extends React.Component {
     }
 }
 
-module.exports = Checkbox;
+export default Checkbox;

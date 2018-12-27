@@ -1,7 +1,9 @@
-var React = require('react');
+import React, { Component } from 'react';
+import './NavBar.css';
+var $ = require("jquery");
 
 // ReactJS class to construct the navbar -- using react so one source of truth on nav bar even when in different files
-class NavBar extends React.Component {
+class NavBar extends Component {
     constructor(props) {
         super(props);
         this.resetData = this.resetData.bind(this);
@@ -35,4 +37,4 @@ class NavBar extends React.Component {
     }
 }
 
-module.exports = NavBar;
+export default NavBar;
